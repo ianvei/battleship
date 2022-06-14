@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-console */
 import Ship from './ship';
 import GameBoard from './gameBoard';
@@ -19,7 +20,15 @@ for (const ship of shipStartingArray) {
   console.log(newShip);
 }
 
-const playerOneBoard = new GameBoard();
 const testBoard = new GameBoard();
-console.log(playerOneBoard);
+// console.log(playerOneBoard);
+// console.log(testBoard);
+
+const shipToPlace = new Ship(shipStartingArray[1].length, shipStartingArray[1].name, [3, 4]);
+const secondShipToPlace = new Ship(shipStartingArray[0].length, shipStartingArray[1].name, [1, 2]);
+
+testBoard.placeShip([3, 4], shipToPlace, true);
+
+testBoard.placeShip([1, 2], secondShipToPlace, false);
+
 console.log(testBoard);

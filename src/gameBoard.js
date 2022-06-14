@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 /* eslint-disable no-plusplus */
@@ -27,22 +29,36 @@ export default class GameBoard {
 
   // eslint-disable-next-line class-methods-use-this
   placeShip(coordinates, ship, isVertical) {
-    //   for(let boardCell of this.boardCoords){
-    //       if((boardCell.x === coordinates[0]) && (boardCell.y === coordinates[1])){
-    //           boardCell.name = ship.name;
-    //       }
-    //   }
+    let colSpan;
+    if (isVertical) {
+      colSpan = coordinates[1] + ship.length;
+    } else {
+      colSpan = coordinates[0] + ship.length;
+    }
+    console.log(colSpan);
+    const shipPositionArray = [];
 
-    // add length to the x coordinate if not is vertical to determine range of impacted cells
-    this.boardCoords.forEach((boardCell) => {
-      if ((boardCell.x === coordinates[0]) && (boardCell.y === coordinates[1])) {
-        boardCell.name = ship.name;
+    for (let y = coordinates[1]; y < colSpan; y++) {
+      const shipOccupies = {};
+      if (isVertical) {
+        shipOccupies.x = coordinates[0];
+        shipOccupies.y = y;
+      } else {
+        shipOccupies.x = y;
+        shipOccupies.y = coordinates[1];
       }
-    });
-
-    console.log(coordinates);
-    console.log(ship);
-    console.log(isVertical)
+      shipPositionArray.push(shipOccupies);
+    }
+    // if having issues check if const vs let messes things up
+    for (const shipCurrentPosition of shipPositionArray) {
+      for (const spotOnBoard of this.boardCoords) {
+        if ((shipCurrentPosition.x === spotOnBoard.x)
+        && (shipCurrentPosition.y === spotOnBoard.y)) {
+          spotOnBoard.name = ship.name;
+          spotOnBoard.occupied = true;
+        }
+      }
+    }
   }
 
   //   registerHit(){};
