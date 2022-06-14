@@ -1,22 +1,25 @@
-import { Ship } from "./ship";
-import { GameBoard } from "./gameBoard";
-
+/* eslint-disable no-console */
+import Ship from './ship';
+import GameBoard from './gameBoard';
 
 // could go in game loop object, just want to test for now.
-let shipStartingArray = [
-    {name: "carrier", length: 5},
-    {name: "battleship", length: 4},
-    {name: "cruiser", length: 3},
-    {name: "submarine", length: 3},
-    {name: "destroyer", length: 2},
-]
+const shipStartingArray = [
+  { name: 'carrier', length: 5 },
+  { name: 'battleship', length: 4 },
+  { name: 'cruiser', length: 3 },
+  { name: 'submarine', length: 3 },
+  { name: 'destroyer', length: 2 },
+];
 
-// in fact, this could probably go in player 
-for (let ship of shipStartingArray){
-    let newShip = new Ship(ship.length, ship.name, [1,3])
-    newShip.hit(0)
-    console.log(newShip)
+// in fact, this could probably go in player
+// eslint-disable-next-line no-restricted-syntax
+for (const ship of shipStartingArray) {
+  const newShip = new Ship(ship.length, ship.name, [1, 3]);
+  newShip.hit(0);
+  console.log(newShip);
 }
 
-let testBoard = new GameBoard
-console.log(testBoard)
+const playerOneBoard = new GameBoard();
+const testBoard = new GameBoard();
+console.log(playerOneBoard);
+console.log(testBoard);
