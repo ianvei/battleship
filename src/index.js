@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import Ship from './ship';
 import GameBoard from './gameBoard';
+import Player from './player';
 
 // could go in game loop object, just want to test for now.
 const shipStartingArray = [
@@ -34,5 +35,17 @@ testBoard.placeShip([3, 4], shipToPlace, true);
 testBoard.placeShip([1, 2], secondShipToPlace, false);
 
 testBoard.placeShip([5, 7], thirdShipToPlace, false);
+testBoard.registerHit([5, 7]);
+testBoard.registerHit([9, 7]);
+testBoard.registerHit([9, 7]);
+testBoard.registerHit([6, 7]);
+testBoard.registerHit([6, 8]);
+testBoard.registerHit([7, 7]);
+// testBoard.registerHit([8, 7]);
 
-console.log(testBoard);
+// console.log(testBoard);
+
+const testPlayer = new Player();
+
+testPlayer.generateCurrentShips();
+console.log(testPlayer);

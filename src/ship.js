@@ -9,13 +9,15 @@ export default class Ship {
   }
 
   hit() {
-    return this.hits.push('X');
+    console.log('IM HIT');
+    this.hits.push('X');
   }
 
   isSunk() {
     if (this.length === this.hits.length) {
-      this.sunk = true;
+      return true;
     }
+    return false;
   }
   // if Ship.isVertical or something in the gameboard -  position = [x, y + length]
   // if !Ship.isVertical - position = [x + length, y]

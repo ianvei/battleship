@@ -1,14 +1,16 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 /* eslint-disable no-plusplus */
+// import Ship from "./ship";
+
 export default class GameBoard {
   constructor() {
     this.boardCoords = [];
     this.init();
-    this.playerOneShips = [];
-    this.computerShips = [];
+    this.sunkShips = [];
   }
 
   init() {
@@ -19,6 +21,7 @@ export default class GameBoard {
         boardSpot.y = j;
         boardSpot.hit = false;
         boardSpot.name = '';
+        boardSpot.shipObject = {};
         boardSpot.guessable = true;
         boardSpot.occupied = false;
         this.boardCoords.push(boardSpot);
@@ -52,21 +55,45 @@ export default class GameBoard {
       }
       shipPositionArray.push(shipOccupies);
     }
-    // if having issues check if const vs let messes things up
+
     for (const shipCurrentPosition of shipPositionArray) {
       for (const spotOnBoard of this.boardCoords) {
         if ((shipCurrentPosition.x === spotOnBoard.x)
         && (shipCurrentPosition.y === spotOnBoard.y)) {
           spotOnBoard.name = ship.name;
           spotOnBoard.occupied = true;
+          spotOnBoard.shipObject = ship;
           console.log(spotOnBoard.name);
         }
       }
     }
   }
 
-  //   registerHit(){};
+  registerHit(coords) {
+    for (const spotOnBoard of this.boardCoords) {
+      if ((coords[0] === spotOnBoard.x) && (coords[1] === spotOnBoard.y)) {
+        if (spotOnBoard.guessable) {
+          if (spotOnBoard.name && spotOnBoard.occupied) {
+            spotOnBoard.hit = true;
+            spotOnBoard.shipObject.hit();
+            if (spotOnBoard.shipObject.isSunk()) { // check if ship is sunk, if so log console
+              console.log('im sunk!');
+              this.sunkShips.push('X');
+            }
+          }
+        } else {
+          console.log('already guessed here!'); // if not guessable
+        }
+        spotOnBoard.guessable = false; // not guessable regardless of hit
+      }
+    }
+  }
 
+  checkWin() {
+    if (this.sunkShips.length >= 5) {
+      console.log('winner!');
+    }
+  }
   // in main loop: GameBoard.placeShip(currentShip)
   //      current ship can be global variable in index.js - mock ships being chosen
 }
