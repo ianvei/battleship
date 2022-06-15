@@ -12,7 +12,6 @@ export default class GameBoard {
   }
 
   init() {
-    // [{x: 0, y:0, hit: false}]
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
         const boardSpot = {};
@@ -29,22 +28,26 @@ export default class GameBoard {
 
   // eslint-disable-next-line class-methods-use-this
   placeShip(coordinates, ship, isVertical) {
+    console.log(ship.length);
     let colSpan;
+    let startingCoordinate;
     if (isVertical) {
       colSpan = coordinates[1] + ship.length;
+      startingCoordinate = coordinates[1];
     } else {
       colSpan = coordinates[0] + ship.length;
+      startingCoordinate = coordinates[0];
     }
     console.log(colSpan);
     const shipPositionArray = [];
 
-    for (let y = coordinates[1]; y < colSpan; y++) {
+    for (let i = startingCoordinate; i < colSpan; i++) {
       const shipOccupies = {};
       if (isVertical) {
         shipOccupies.x = coordinates[0];
-        shipOccupies.y = y;
+        shipOccupies.y = i;
       } else {
-        shipOccupies.x = y;
+        shipOccupies.x = i;
         shipOccupies.y = coordinates[1];
       }
       shipPositionArray.push(shipOccupies);
@@ -56,6 +59,7 @@ export default class GameBoard {
         && (shipCurrentPosition.y === spotOnBoard.y)) {
           spotOnBoard.name = ship.name;
           spotOnBoard.occupied = true;
+          console.log(spotOnBoard.name);
         }
       }
     }

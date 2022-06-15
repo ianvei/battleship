@@ -24,11 +24,15 @@ const testBoard = new GameBoard();
 // console.log(playerOneBoard);
 // console.log(testBoard);
 
+// there is an error with the lengths, figure out
 const shipToPlace = new Ship(shipStartingArray[1].length, shipStartingArray[1].name, [3, 4]);
-const secondShipToPlace = new Ship(shipStartingArray[0].length, shipStartingArray[1].name, [1, 2]);
+const secondShipToPlace = new Ship(shipStartingArray[3].length, shipStartingArray[3].name, [1, 2]);
+const thirdShipToPlace = new Ship(shipStartingArray[0].length, shipStartingArray[0].name, [6, 7]);
 
 testBoard.placeShip([3, 4], shipToPlace, true);
 
 testBoard.placeShip([1, 2], secondShipToPlace, false);
+
+testBoard.placeShip([5, 7], thirdShipToPlace, false);
 
 console.log(testBoard);
