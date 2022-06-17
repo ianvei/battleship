@@ -1,3 +1,75 @@
-*{
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 0;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.top {
+    width: 100vw;
+    height: 10vh;
+    background-color: lightcoral;
+}
+
+.main {
+    display: inline-flex;
+    width: 100vw;
+    height: 80vh;
+    background-color: lightblue;  
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.footer {
+    width: 100vw;
+    height: 10vh;  
+    background-color: lightgreen;
+}
+
+.player-grid-cont {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.enemy-grid-cont {
+    width: 400px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.cell {
+    border: 1px solid black;
+}
+
+.cell:hover {
+    background-color: lightslategray;
+}
+
+.occupied {
     background-color: red;
+}
+
+.user-ships {
+    width: 400px;
+    display: inline-flex;
+}
+.user-ships > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    width: 100px;
+    height: 20px;
 }
