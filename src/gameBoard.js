@@ -11,14 +11,16 @@ export default class GameBoard {
     this.boardCoords = [];
     this.init();
     this.sunkShips = [];
+    this.placing = true;
+    this.currentSelectedShip = '';
   }
 
   init() {
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
         const boardSpot = {};
-        boardSpot.x = i;
-        boardSpot.y = j;
+        boardSpot.x = j;
+        boardSpot.y = i;
         boardSpot.hit = false;
         boardSpot.name = '';
         boardSpot.shipObject = {};

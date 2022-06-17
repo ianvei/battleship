@@ -1,9 +1,13 @@
+/* eslint-disable no-console */
+/* eslint-disable max-len */
+/* eslint-disable consistent-return */
 /* eslint-disable no-restricted-syntax */
 import Ship from './ship';
 
 export default class Player {
-  constructor(gameboard, player) {
+  constructor(gameboard, enemyBoard, player) {
     this.player = player;
+    this.enemyBoard = enemyBoard;
     this.gameboard = gameboard;
     this.startingShips = [
       { name: 'carrier', length: 5 },
@@ -22,6 +26,21 @@ export default class Player {
     }
   }
 
+  randomGuess() {
+    if (this.player === 'cpu') {
+      const xRandom = Math.floor(Math.random() * 10);
+      const yRandom = Math.floor(Math.random() * 10);
+      for (const boardSpot of this.enemyBoard.boardCoords) {
+        if (((boardSpot.x === xRandom) && (boardSpot.y === yRandom)) && !boardSpot.guessable) {
+          console.log('From random - cant guess here!');
+          this.randomGuess();
+        } else if (((boardSpot.x === xRandom) && (boardSpot.y === yRandom)) && boardSpot.guessable) {
+          this.enemyBoard.registerHit([xRandom, yRandom]);
+          return [xRandom, yRandom];
+        }
+      }
+    }
+  }
   //   playTurn(coords) {
 
   //   }
