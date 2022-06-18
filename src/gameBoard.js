@@ -58,16 +58,42 @@ export default class GameBoard {
       shipPositionArray.push(shipOccupies);
     }
 
+    const valuesArray = [];
+    const validSpots = [];
     for (const shipCurrentPosition of shipPositionArray) {
       for (const spotOnBoard of this.boardCoords) {
         if ((shipCurrentPosition.x === spotOnBoard.x)
         && (shipCurrentPosition.y === spotOnBoard.y)) {
-          spotOnBoard.name = ship.name;
-          spotOnBoard.occupied = true;
-          spotOnBoard.shipObject = ship;
-          console.log(spotOnBoard.name);
+          if (spotOnBoard.occupied) {
+            valuesArray.push(false);
+            break; // if spot is occupied, simply don't let it happen
+          }
+          if (colSpan > 10) {
+            console.log('not is vert');
+            valuesArray.push(false);
+            break;
+          }
+          validSpots.push(spotOnBoard);
+          valuesArray.push(true);
         }
       }
+      console.log(valuesArray);
+    }
+
+    const result = valuesArray.every(Boolean); // check if every value is okay before occupying
+    if (result) {
+      console.log('ITS ALL GOOD');
+      console.log(valuesArray);
+      console.log(shipPositionArray);
+      for (const spotOnBoard of validSpots) {
+        spotOnBoard.name = ship.name;
+        spotOnBoard.occupied = true;
+        spotOnBoard.shipObject = ship;
+        console.log(spotOnBoard.name);
+      }
+    } else {
+      console.log("NOT GOOD");
+      console.log(valuesArray);
     }
   }
 
@@ -96,6 +122,4 @@ export default class GameBoard {
       console.log('winner!');
     }
   }
-  // in main loop: GameBoard.placeShip(currentShip)
-  //      current ship can be global variable in index.js - mock ships being chosen
 }

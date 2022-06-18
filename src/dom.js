@@ -7,7 +7,7 @@ export default class ManipulateDom {
   constructor(playerGameBoard, enemyGameBoard, player) {
     this.gameBoard = playerGameBoard;
     this.enemyGameBoard = enemyGameBoard;
-    this.isVertical = false;
+    this.isVertical = true;
     this.player = player;
     this.generateGrid();
     this.assignShipButtons();
