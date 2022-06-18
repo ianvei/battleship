@@ -7,10 +7,11 @@ export default class ManipulateDom {
   constructor(playerGameBoard, enemyGameBoard, player) {
     this.gameBoard = playerGameBoard;
     this.enemyGameBoard = enemyGameBoard;
-    this.isVertical = true;
+    this.isVertical = false;
     this.player = player;
     this.generateGrid();
     this.assignShipButtons();
+    this.rotateToggle();
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -22,43 +23,19 @@ export default class ManipulateDom {
       gridCell.setAttribute('data-colums', spotOnBoard.x);
       gridCell.setAttribute('data-rows', spotOnBoard.y);
       gridCell.spotOnBoardObject = spotOnBoard;
-      //   gridCell.addEventListener('click', () => {
-      //     for (const gridCell of container) {
-      //       console.log(gridCell);
-      //     }
-      //   });
+
       gridCell.addEventListener('click', () => {
         console.log(spotOnBoard);
-        // this.gameBoard.registerHit([this.gameBoard.boardCoords.x, this.gameBoard.boardCoords.y]);
         this.gameBoard.placeShip(
           [spotOnBoard.x, spotOnBoard.y],
           this.gameBoard.currentSelectedShip,
           this.isVertical,
         );
         this.checkDom();
-        // if (!(this.isVertical)) {
-        //   for (let i = 0; i < this.gameBoard.currentSelectedShip.length; i++) {
-        //     this.checkForShips(gridCell);
-        //   }
-        // }
+        // this.disablePlacement();
       });
       container.appendChild(gridCell);
     }
-
-    // for (let i = 0; i < 16; i++) {
-    //   const row = document.createElement('div');
-    //   row.className = 'row';
-    //   row.id = `row${i}`;
-
-    //   for (let j = 0; j < 16; j++) {
-    //     const box = document.createElement('div');
-    //     box.className = 'box';
-    //     row.appendChild(box);
-    //   }
-
-    //   container.appendChild(row);
-    // }
-
     return container;
   }
 
@@ -73,6 +50,9 @@ export default class ManipulateDom {
     for (let child = grid.firstChild; child !== null; child = child.nextSibling) {
       if (child.spotOnBoardObject.name) {
         child.classList.add('occupied');
+        child.classList.add('noClick');
+        const shipButton = document.querySelector(`.${child.spotOnBoardObject.name}`);
+        shipButton.disabled = true;
       }
     }
   }
@@ -117,6 +97,14 @@ export default class ManipulateDom {
       console.log(destroyer.shipObject);
       this.gameBoard.currentSelectedShip = destroyer.shipObject;
       console.log(this.gameBoard);
+    });
+  }
+
+  rotateToggle() {
+    const rotateButton = document.querySelector('.rotate-toggle');
+    rotateButton.addEventListener('click', () => {
+      this.isVertical = !this.isVertical;
+      console.log(this.isVertical);
     });
   }
   //   placeShips(ship) {

@@ -92,7 +92,7 @@ export default class GameBoard {
         console.log(spotOnBoard.name);
       }
     } else {
-      console.log("NOT GOOD");
+      console.log('NOT GOOD');
       console.log(valuesArray);
     }
   }
