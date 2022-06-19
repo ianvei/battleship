@@ -5,8 +5,8 @@
 import Ship from './ship';
 
 export default class Player {
-  constructor(gameboard, enemyBoard, player) {
-    this.player = player;
+  constructor(gameboard, enemyBoard, playerName) {
+    this.playerName = playerName;
     this.enemyBoard = enemyBoard;
     this.gameboard = gameboard;
     this.startingShips = [
@@ -40,6 +40,13 @@ export default class Player {
         }
       }
     }
+  }
+
+  placeAllShips() {
+    for (const ship of this.currentShips) {
+      this.gameboard.placeShip([this.randomGuess[0], this.randomGuess[1]], ship, true);
+    }
+    console.log(this.gameboard);
   }
   //   playTurn(coords) {
 

@@ -13,6 +13,7 @@ export default class GameBoard {
     this.sunkShips = [];
     this.placing = true;
     this.currentSelectedShip = '';
+    this.placedShipAmmount = 0;
   }
 
   init() {
@@ -91,6 +92,8 @@ export default class GameBoard {
         spotOnBoard.shipObject = ship;
         console.log(spotOnBoard.name);
       }
+      this.placedShipAmmount += 1;
+      this.currentSelectedShip = '';
     } else {
       console.log('NOT GOOD');
       console.log(valuesArray);
@@ -98,9 +101,11 @@ export default class GameBoard {
   }
 
   registerHit(coords) {
+    console.log('HIT');
     for (const spotOnBoard of this.boardCoords) {
       if ((coords[0] === spotOnBoard.x) && (coords[1] === spotOnBoard.y)) {
         if (spotOnBoard.guessable) {
+          console.log('hello');
           if (spotOnBoard.name && spotOnBoard.occupied) {
             spotOnBoard.hit = true;
             spotOnBoard.shipObject.hit();
@@ -112,6 +117,7 @@ export default class GameBoard {
         } else {
           console.log('already guessed here!'); // if not guessable
         }
+        console.log('NOT GUESSABLE ANYMORE');
         spotOnBoard.guessable = false; // not guessable regardless of hit
       }
     }
@@ -120,25 +126,6 @@ export default class GameBoard {
   checkWin() {
     if (this.sunkShips.length >= 5) {
       console.log('winner!');
-    }
-  }
-
-  checkIfDonePlacing() {
-    const grid = document.querySelector('.user-ships');
-    const checkArray = [];
-    for (let child = grid.firstChild; child !== null; child = child.nextSibling) {
-      if (child.hasAttribute('disabled')) {
-        checkArray.push(true);
-      } else {
-        checkArray.push(false);
-      }
-    }
-    const checkArrayBool = checkArray.every(Boolean);
-    if (checkArrayBool) {
-      console.log('its all true!');
-      document.querySelector('.player-grid-cont').classList.add('noClick');
-    } else {
-      console.log('no flase in check');
     }
   }
 }

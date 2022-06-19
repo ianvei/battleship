@@ -12,7 +12,7 @@ export default class ManipulateDom {
     this.generateGrid();
     this.assignShipButtons();
     this.rotateToggle();
-    this.placedShipAmmount = 0;
+    // this.placedShipAmmount = 0;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -27,14 +27,16 @@ export default class ManipulateDom {
 
       gridCell.addEventListener('click', () => {
         console.log(spotOnBoard);
-        this.gameBoard.placeShip(
-          [spotOnBoard.x, spotOnBoard.y],
-          this.gameBoard.currentSelectedShip,
-          this.isVertical,
-        );
-        this.checkDom();
-        this.checkIfDonePlacing();
-        this.placedShipAmmount += 1;
+        if (!(this.gameBoard.currentSelectedShip === '')) {
+          this.gameBoard.placeShip(
+            [spotOnBoard.x, spotOnBoard.y],
+            this.gameBoard.currentSelectedShip,
+            this.isVertical,
+          );
+          // this.placedShipAmmount += 1;
+          this.checkDom();
+          this.checkIfDonePlacing();
+        }
         // this.disablePlacement();
       });
       container.appendChild(gridCell);
@@ -56,6 +58,7 @@ export default class ManipulateDom {
         child.classList.add('noClick');
         const shipButton = document.querySelector(`.${child.spotOnBoardObject.name}`);
         shipButton.disabled = true;
+        // this.gameBoard.currentSelectedShip = '';
       }
     }
   }
@@ -123,12 +126,13 @@ export default class ManipulateDom {
     //   }
     // }
     // const checkArrayBool = checkArray.every(Boolean);
-    if (this.placedShipAmmount === 5) {
+    if (this.gameBoard.placedShipAmmount === 5) {
       console.log('its all true!');
       document.querySelector('.player-grid-cont').classList.add('noClick');
     } else {
       console.log('no flase in check');
     }
+    console.log(`PLACED SHIP AMOUNT: ${this.gameBoard.placedShipAmmount}`);
   }
   //   placeShips(ship) {
 

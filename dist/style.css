@@ -32,7 +32,7 @@ body {
     background-color: #018281;
 }
 
-.player-grid-cont {
+.player-grid-cont, .enemy-grid-cont {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
@@ -43,7 +43,7 @@ body {
     
 }
 
-.player-grid-cont > div {
+.player-grid-cont, .enemy-grid-cont > div {
     cursor: pointer;
 }
 

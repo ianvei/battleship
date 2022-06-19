@@ -4,6 +4,7 @@ import Ship from './ship';
 import GameBoard from './gameBoard';
 import Player from './player';
 import ManipulateDom from './dom';
+import CpuManipulateDom from './cpuDom';
 
 // could go in game loop object, just want to test for now.
 const shipStartingArray = [
@@ -56,5 +57,6 @@ const testCpu = new Player(cpuBoard, testBoard, 'cpu');
 console.log(testPlayer);
 
 const domManipulator = new ManipulateDom(testBoard, cpuBoard, testPlayer);
-domManipulator;
+const cpuDomManipulator = new CpuManipulateDom(cpuBoard, testBoard, testCpu);
 // domManipulator.
+testCpu.placeAllShips();
