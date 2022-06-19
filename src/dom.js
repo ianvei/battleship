@@ -12,6 +12,7 @@ export default class ManipulateDom {
     this.generateGrid();
     this.assignShipButtons();
     this.rotateToggle();
+    this.placedShipAmmount = 0;
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -32,6 +33,8 @@ export default class ManipulateDom {
           this.isVertical,
         );
         this.checkDom();
+        this.checkIfDonePlacing();
+        this.placedShipAmmount += 1;
         // this.disablePlacement();
       });
       container.appendChild(gridCell);
@@ -106,6 +109,26 @@ export default class ManipulateDom {
       this.isVertical = !this.isVertical;
       console.log(this.isVertical);
     });
+  }
+
+  checkIfDonePlacing() {
+    // const grid = document.querySelector('.user-ships');
+    // const checkArray = [];
+    // for (let child = grid.firstChild; child !== null; child = child.nextSibling) {
+    //   if (child.disabled) {
+    //     this.placedShipAmmount += 1;
+    //     checkArray.push(true);
+    //   } else {
+    //     checkArray.push(false);
+    //   }
+    // }
+    // const checkArrayBool = checkArray.every(Boolean);
+    if (this.placedShipAmmount === 5) {
+      console.log('its all true!');
+      document.querySelector('.player-grid-cont').classList.add('noClick');
+    } else {
+      console.log('no flase in check');
+    }
   }
   //   placeShips(ship) {
 

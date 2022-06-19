@@ -122,4 +122,23 @@ export default class GameBoard {
       console.log('winner!');
     }
   }
+
+  checkIfDonePlacing() {
+    const grid = document.querySelector('.user-ships');
+    const checkArray = [];
+    for (let child = grid.firstChild; child !== null; child = child.nextSibling) {
+      if (child.hasAttribute('disabled')) {
+        checkArray.push(true);
+      } else {
+        checkArray.push(false);
+      }
+    }
+    const checkArrayBool = checkArray.every(Boolean);
+    if (checkArrayBool) {
+      console.log('its all true!');
+      document.querySelector('.player-grid-cont').classList.add('noClick');
+    } else {
+      console.log('no flase in check');
+    }
+  }
 }
