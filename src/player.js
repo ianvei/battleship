@@ -27,16 +27,19 @@ export default class Player {
   }
 
   randomGuess() {
-    if (this.player === 'cpu') {
+    if (this.playerName === 'cpu') {
       const xRandom = Math.floor(Math.random() * 10);
       const yRandom = Math.floor(Math.random() * 10);
+      console.log(`FROM RANDOM ${[xRandom, yRandom]}`);
       for (const boardSpot of this.enemyBoard.boardCoords) {
-        if (((boardSpot.x === xRandom) && (boardSpot.y === yRandom)) && !boardSpot.guessable) {
-          console.log('From random - cant guess here!');
-          this.randomGuess();
-        } else if (((boardSpot.x === xRandom) && (boardSpot.y === yRandom)) && boardSpot.guessable) {
-          this.enemyBoard.registerHit([xRandom, yRandom]);
-          return [xRandom, yRandom];
+        if (((boardSpot.x === xRandom) && (boardSpot.y === yRandom))) {
+          if (boardSpot.hit) {
+            // console.log('From random - cant guess here!');
+            this.randomGuess();
+          } else if (!boardSpot.hit) {
+            this.enemyBoard.registerHit([xRandom, yRandom]);
+            // return [xRandom, yRandom];
+          }
         }
       }
     }
@@ -44,9 +47,28 @@ export default class Player {
 
   placeAllShips() {
     for (const ship of this.currentShips) {
-      this.gameboard.placeShip([this.randomGuess[0], this.randomGuess[1]], ship, true);
+      // console.log('erm');
+      // console.log(ship);
+      // while (this.gameboard.placed) {
+      do {
+        let isVertical;
+        const xRandom = Math.floor(Math.random() * 10);
+        const yRandom = Math.floor(Math.random() * 10);
+        if (Math.round(Math.random())) {
+          isVertical = true;
+        } else {
+          isVertical = false;
+        }
+        this.gameboard.placeShip([xRandom, yRandom], ship, isVertical);
+        // console.log([xRandom, yRandom]);
+      } while (!this.gameboard.placed);
+
+      // }
+
+      // while (this.gameboard.placedShipAmount < 4) {
+      // }
     }
-    console.log(this.gameboard);
+    // console.log(this.gameboard);
   }
   //   playTurn(coords) {
 

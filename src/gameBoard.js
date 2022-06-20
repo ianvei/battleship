@@ -14,6 +14,7 @@ export default class GameBoard {
     this.placing = true;
     this.currentSelectedShip = '';
     this.placedShipAmmount = 0;
+    this.placed = false;
   }
 
   init() {
@@ -34,6 +35,7 @@ export default class GameBoard {
 
   // eslint-disable-next-line class-methods-use-this
   placeShip(coordinates, ship, isVertical) {
+    this.placed = false;
     console.log(ship.length);
     let colSpan;
     let startingCoordinate;
@@ -93,6 +95,7 @@ export default class GameBoard {
         console.log(spotOnBoard.name);
       }
       this.placedShipAmmount += 1;
+      this.placed = true;
       this.currentSelectedShip = '';
     } else {
       console.log('NOT GOOD');
@@ -101,23 +104,27 @@ export default class GameBoard {
   }
 
   registerHit(coords) {
-    console.log('HIT');
     for (const spotOnBoard of this.boardCoords) {
       if ((coords[0] === spotOnBoard.x) && (coords[1] === spotOnBoard.y)) {
         if (spotOnBoard.guessable) {
-          console.log('hello');
           if (spotOnBoard.name && spotOnBoard.occupied) {
             spotOnBoard.hit = true;
+            spotOnBoard.guessable = false;
             spotOnBoard.shipObject.hit();
             if (spotOnBoard.shipObject.isSunk()) { // check if ship is sunk, if so log console
               console.log('im sunk!');
               this.sunkShips.push('X');
+              console.log(this.sunkShips);
+              if (this.sunkShips.length >= 5) {
+                console.log('you win!');
+              }
             }
           }
         } else {
           console.log('already guessed here!'); // if not guessable
         }
         console.log('NOT GUESSABLE ANYMORE');
+        // spotOnBoard.
         spotOnBoard.guessable = false; // not guessable regardless of hit
       }
     }

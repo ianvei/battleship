@@ -19,8 +19,4 @@ export default class Ship {
     }
     return false;
   }
-  // if Ship.isVertical or something in the gameboard -  position = [x, y + length]
-  // if !Ship.isVertical - position = [x + length, y]
-  // we don't actually need to know the position of the hit, we just need to know that a
-  //  hit was succesfull, and if the length of hits = positions it is correct
 }

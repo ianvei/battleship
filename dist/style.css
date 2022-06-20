@@ -62,9 +62,7 @@ body {
     background-color: lightslategray;
 }
 
-.occupied {
-    background-color: red;
-}
+
 
 .user-ships {
     width: 400px;
@@ -89,3 +87,11 @@ body {
     pointer-events: none;
     cursor: default;
  }
+
+ /* .enemy-occupied {
+    background-color: lightblue;
+ } */
+
+ .occupied {
+    background-color: red;
+}

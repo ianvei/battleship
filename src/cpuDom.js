@@ -8,7 +8,6 @@ export default class CpuManipulateDom {
     this.isVertical = false;
     this.player = player;
     this.generateGrid();
-    this.assignShipButtons();
     this.rotateToggle();
     this.placedShipAmmount = 0;
   }
@@ -16,6 +15,7 @@ export default class CpuManipulateDom {
   // eslint-disable-next-line class-methods-use-this
   generateGrid() {
     const container = document.querySelector('.enemy-grid-cont');
+    container.classList.add('noClick');
     for (const spotOnBoard of this.gameBoard.boardCoords) {
       const gridCell = document.createElement('div');
       gridCell.classList.add('cell');
@@ -26,6 +26,17 @@ export default class CpuManipulateDom {
       gridCell.addEventListener('click', () => {
         console.log(spotOnBoard);
         this.gameBoard.registerHit([spotOnBoard.x, spotOnBoard.y]);
+        gridCell.classList.add('noClick');
+        if (gridCell.spotOnBoardObject.hit) {
+          gridCell.innerText = '!';
+          gridCell.classList.add('occupied');
+        } else {
+          gridCell.innerText = 'X';
+        }
+        this.player.randomGuess();
+        // this.checkForShips
+        this.checkEnemyDom();
+        // this.enemyGameBoard. //maybe pass this
       });
       container.appendChild(gridCell);
     }
@@ -34,7 +45,7 @@ export default class CpuManipulateDom {
 
   checkForShips(gridCell) {
     if (gridCell.spotOnBoardObject.name) {
-      gridCell.classList.add('occupied');
+      gridCell.classList.add('enemy-occupied');
     }
   }
 
@@ -42,10 +53,26 @@ export default class CpuManipulateDom {
     const grid = document.querySelector('.enemy-grid-cont');
     for (let child = grid.firstChild; child !== null; child = child.nextSibling) {
       if (child.spotOnBoardObject.name) {
-        child.classList.add('occupied');
-        child.classList.add('noClick');
-        const shipButton = document.querySelector(`.${child.spotOnBoardObject.name}`);
-        shipButton.disabled = true;
+        child.classList.add('enemy-occupied');
+        // child.innerText = '!';
+      }
+      // if ((!child.spotOnBoardObject.guessable) && (!child.spotOnBoardObject.name)) {
+      //   child.classList.add('enemy-occupied');
+      //   child.innerText = 'X';
+      // }
+    }
+  }
+
+  checkEnemyDom() {
+    const grid = document.querySelector('.player-grid-cont');
+    for (let child = grid.firstChild; child !== null; child = child.nextSibling) {
+      if (child.spotOnBoardObject.hit) {
+        child.classList.add('enemy-occupied');
+        child.innerText = '!';
+      }
+      if ((!child.spotOnBoardObject.guessable) && (!child.spotOnBoardObject.name)) {
+        child.classList.add('enemy-occupied');
+        child.innerText = 'X';
       }
     }
   }

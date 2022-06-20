@@ -129,6 +129,7 @@ export default class ManipulateDom {
     if (this.gameBoard.placedShipAmmount === 5) {
       console.log('its all true!');
       document.querySelector('.player-grid-cont').classList.add('noClick');
+      document.querySelector('.enemy-grid-cont').classList.toggle('noClick');
     } else {
       console.log('no flase in check');
     }
