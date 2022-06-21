@@ -25,7 +25,7 @@ export default class CpuManipulateDom {
 
       gridCell.addEventListener('click', () => {
         console.log(spotOnBoard);
-        this.gameBoard.registerHit([spotOnBoard.x, spotOnBoard.y]);
+        this.gameBoard.registerHit([spotOnBoard.x, spotOnBoard.y], 'player');
         gridCell.classList.add('noClick');
         if (gridCell.spotOnBoardObject.hit) {
           gridCell.innerText = '!';
@@ -58,6 +58,7 @@ export default class CpuManipulateDom {
     for (let child = grid.firstChild; child !== null; child = child.nextSibling) {
       if (child.spotOnBoardObject.name) {
         child.classList.add('enemy-occupied');
+        child.classList.add('occupied');
         // child.innerText = '!';
       }
       // if ((!child.spotOnBoardObject.guessable) && (!child.spotOnBoardObject.name)) {

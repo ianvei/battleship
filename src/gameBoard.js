@@ -109,8 +109,9 @@ export default class GameBoard {
     }
   }
 
-  registerHit(coords) {
+  registerHit(coords, name) {
     this.tempCount = 0;
+    console.log(`TESTING THE HIT: ${name}`);
     for (const spotOnBoard of this.boardCoords) {
       if ((coords[0] === spotOnBoard.x) && (coords[1] === spotOnBoard.y)) {
         if (spotOnBoard.guessable && (!spotOnBoard.hit)) {
@@ -125,8 +126,11 @@ export default class GameBoard {
               if (this.sunkShips.length >= 5) {
                 if (this.name === 'computer') {
                   console.log('Congrats player you win!');
+                  document.querySelector('.win').innerText = `${name} wins!`;
+                  this.winFlag = true;
                 } else if (this.name === 'player') {
-                  console.log(`Congrats ${this.name} you win!`);
+                  console.log(`Congrats ${name} you win!`);
+                  document.querySelector('.win').innerText = `${name} wins!`;
                   this.winFlag = true;
                 }
               }
