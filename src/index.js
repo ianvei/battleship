@@ -15,9 +15,9 @@ const shipStartingArray = [
   { name: 'destroyer', length: 2 },
 ];
 
-const testBoard = new GameBoard();
+const testBoard = new GameBoard('player');
 
-const cpuBoard = new GameBoard();
+const cpuBoard = new GameBoard('computer');
 const testPlayer = new Player(testBoard, cpuBoard, 'player');
 
 testPlayer.generateCurrentShips();

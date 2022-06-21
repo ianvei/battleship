@@ -9,6 +9,7 @@ export default class Player {
     this.playerName = playerName;
     this.enemyBoard = enemyBoard;
     this.gameboard = gameboard;
+    this.succesfullRandom = false;
     this.startingShips = [
       { name: 'carrier', length: 5 },
       { name: 'battleship', length: 4 },
@@ -28,20 +29,12 @@ export default class Player {
 
   randomGuess() {
     if (this.playerName === 'cpu') {
-      const xRandom = Math.floor(Math.random() * 10);
-      const yRandom = Math.floor(Math.random() * 10);
-      console.log(`FROM RANDOM ${[xRandom, yRandom]}`);
-      for (const boardSpot of this.enemyBoard.boardCoords) {
-        if (((boardSpot.x === xRandom) && (boardSpot.y === yRandom))) {
-          if (boardSpot.hit) {
-            // console.log('From random - cant guess here!');
-            this.randomGuess();
-          } else if (!boardSpot.hit) {
-            this.enemyBoard.registerHit([xRandom, yRandom]);
-            // return [xRandom, yRandom];
-          }
-        }
-      }
+      do {
+        const xRandom = Math.floor(Math.random() * 10);
+        const yRandom = Math.floor(Math.random() * 10);
+        console.log(`FROM RANDOM ${[xRandom, yRandom]}`);
+        this.enemyBoard.registerHit([xRandom, yRandom]);
+      } while (this.enemyBoard.tempCount < 1);
     }
   }
 

@@ -7,7 +7,7 @@
 // import Ship from "./ship";
 
 export default class GameBoard {
-  constructor() {
+  constructor(name) {
     this.boardCoords = [];
     this.init();
     this.sunkShips = [];
@@ -15,6 +15,10 @@ export default class GameBoard {
     this.currentSelectedShip = '';
     this.placedShipAmmount = 0;
     this.placed = false;
+    this.name = name;
+    this.succesfullRandom = false;
+    this.tempCount = 0;
+    // this.domObject = domObject;
   }
 
   init() {
@@ -97,6 +101,7 @@ export default class GameBoard {
       this.placedShipAmmount += 1;
       this.placed = true;
       this.currentSelectedShip = '';
+      this.succesfullRandom = true;
     } else {
       console.log('NOT GOOD');
       console.log(valuesArray);
@@ -104,9 +109,10 @@ export default class GameBoard {
   }
 
   registerHit(coords) {
+    this.tempCount = 0;
     for (const spotOnBoard of this.boardCoords) {
       if ((coords[0] === spotOnBoard.x) && (coords[1] === spotOnBoard.y)) {
-        if (spotOnBoard.guessable) {
+        if (spotOnBoard.guessable && (!spotOnBoard.hit)) {
           if (spotOnBoard.name && spotOnBoard.occupied) {
             spotOnBoard.hit = true;
             spotOnBoard.guessable = false;
@@ -116,12 +122,22 @@ export default class GameBoard {
               this.sunkShips.push('X');
               console.log(this.sunkShips);
               if (this.sunkShips.length >= 5) {
-                console.log('you win!');
+                if (this.name === 'computer') {
+                  console.log('Congrats player you win!');
+                } else if (this.name === 'player') {
+                  console.log(`Congrats ${this.name} you win!`);
+                }
               }
             }
+            this.tempCount += 1;
+          } else {
+            this.tempCount += 1; // a hit, but not on a ship.
           }
         } else {
           console.log('already guessed here!'); // if not guessable
+          // this.registerHit(coords);
+          // break;
+          // this.succesfullRandom = false;
         }
         console.log('NOT GUESSABLE ANYMORE');
         // spotOnBoard.
