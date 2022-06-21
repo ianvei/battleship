@@ -18,6 +18,7 @@ export default class GameBoard {
     this.name = name;
     this.succesfullRandom = false;
     this.tempCount = 0;
+    this.winFlag = false;
     // this.domObject = domObject;
   }
 
@@ -126,6 +127,7 @@ export default class GameBoard {
                   console.log('Congrats player you win!');
                 } else if (this.name === 'player') {
                   console.log(`Congrats ${this.name} you win!`);
+                  this.winFlag = true;
                 }
               }
             }

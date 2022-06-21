@@ -12,6 +12,7 @@ export default class ManipulateDom {
     this.generateGrid();
     this.assignShipButtons();
     this.rotateToggle();
+    this.placeForMe();
     // this.placedShipAmmount = 0;
   }
 
@@ -63,6 +64,17 @@ export default class ManipulateDom {
     }
   }
 
+  placeForMe() {
+    document.querySelector('.place-my-ships').addEventListener('click', () => {
+      this.player.placeAllShips();
+      this.checkDom();
+      document.querySelector('.enemy-grid-cont').classList.toggle('noClick');
+      document.querySelector('.place-my-ships').classList.toggle('noClick');
+      document.querySelector('.place-my-ships').disabled = true;
+      document.querySelector('.player-grid-cont').classList.toggle('noClick');
+    });
+  }
+
   assignShipButtons() {
     const carrier = document.querySelector('.carrier');
     const battleship = document.querySelector('.battleship');
@@ -75,6 +87,8 @@ export default class ManipulateDom {
       console.log(carrier.shipObject);
       this.gameBoard.currentSelectedShip = carrier.shipObject;
       console.log(this.gameBoard);
+      document.querySelector('.place-my-ships').classList.toggle('noClick');
+      document.querySelector('.place-my-ships').disabled = true;
     });
 
     battleship.shipObject = this.player.currentShips[1];
@@ -82,6 +96,8 @@ export default class ManipulateDom {
       console.log(battleship.shipObject);
       this.gameBoard.currentSelectedShip = battleship.shipObject;
       console.log(this.gameBoard);
+      document.querySelector('.place-my-ships').classList.toggle('noClick');
+      document.querySelector('.place-my-ships').disabled = true;
     });
 
     cruiser.shipObject = this.player.currentShips[2];
@@ -89,6 +105,8 @@ export default class ManipulateDom {
       console.log(cruiser.shipObject);
       this.gameBoard.currentSelectedShip = cruiser.shipObject;
       console.log(this.gameBoard);
+      document.querySelector('.place-my-ships').classList.toggle('noClick');
+      document.querySelector('.place-my-ships').disabled = true;
     });
 
     submarine.shipObject = this.player.currentShips[3];
@@ -96,6 +114,8 @@ export default class ManipulateDom {
       console.log(submarine.shipObject);
       this.gameBoard.currentSelectedShip = submarine.shipObject;
       console.log(this.gameBoard);
+      document.querySelector('.place-my-ships').classList.toggle('noClick');
+      document.querySelector('.place-my-ships').disabled = true;
     });
 
     destroyer.shipObject = this.player.currentShips[4];
@@ -103,6 +123,8 @@ export default class ManipulateDom {
       console.log(destroyer.shipObject);
       this.gameBoard.currentSelectedShip = destroyer.shipObject;
       console.log(this.gameBoard);
+      document.querySelector('.place-my-ships').classList.toggle('noClick');
+      document.querySelector('.place-my-ships').disabled = true;
     });
   }
 

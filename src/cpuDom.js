@@ -33,9 +33,13 @@ export default class CpuManipulateDom {
         } else {
           gridCell.innerText = 'X';
         }
-        this.player.randomGuess();
-        // this.checkForShips
-        this.checkEnemyDom();
+        document.querySelector('.enemy-grid-cont').classList.toggle('noClick');
+        setTimeout(() => {
+          this.player.randomGuess();
+          this.checkEnemyDom();
+          console.log('Delayed for 1 second.');
+          document.querySelector('.enemy-grid-cont').classList.toggle('noClick');
+        }, '700');
         // this.enemyGameBoard. //maybe pass this
       });
       container.appendChild(gridCell);

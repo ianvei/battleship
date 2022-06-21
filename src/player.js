@@ -32,7 +32,6 @@ export default class Player {
       do {
         const xRandom = Math.floor(Math.random() * 10);
         const yRandom = Math.floor(Math.random() * 10);
-        console.log(`FROM RANDOM ${[xRandom, yRandom]}`);
         this.enemyBoard.registerHit([xRandom, yRandom]);
       } while (this.enemyBoard.tempCount < 1);
     }
@@ -40,9 +39,6 @@ export default class Player {
 
   placeAllShips() {
     for (const ship of this.currentShips) {
-      // console.log('erm');
-      // console.log(ship);
-      // while (this.gameboard.placed) {
       do {
         let isVertical;
         const xRandom = Math.floor(Math.random() * 10);
@@ -53,17 +49,7 @@ export default class Player {
           isVertical = false;
         }
         this.gameboard.placeShip([xRandom, yRandom], ship, isVertical);
-        // console.log([xRandom, yRandom]);
       } while (!this.gameboard.placed);
-
-      // }
-
-      // while (this.gameboard.placedShipAmount < 4) {
-      // }
     }
-    // console.log(this.gameboard);
   }
-  //   playTurn(coords) {
-
-  //   }
 }
