@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'VT323';
 }
 
 body {
@@ -11,9 +12,20 @@ body {
     min-width: 100vw;
 }
 
+.battle-logo {
+    width: 525px;
+    height: 149px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
 .top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
-    height: 10vh;
+    height: 15vh;
+    padding-top: 40px;
     background-color: #018281;
 }
 
@@ -55,20 +67,36 @@ body {
 }
 
 .cell {
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    background: #C3C3C3;
+    box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E;
 }
 
 .cell:hover {
-    background-color: lightslategray;
+    /* background-color: lightslategray; */
+    background: #C3C3C3;
+    box-shadow: none;
+    /* box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E; */
+    border: 1px dashed #000000;
 }
 
 
 
 .user-ships {
-    width: 400px;
+    align-items: center;
+    justify-content: center;
+    width: 486px;
     display: inline-flex;
+    gap: 20px;
+    padding-top: 20px;
+    /* overflow: auto; */
+    flex-wrap: wrap;
 }
-.user-ships > div {
+/* .user-ships > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,6 +104,15 @@ body {
     width: 100px;
     height: 20px;
     cursor: pointer;
+} */
+
+.user-ships > button {
+    background: #C3C3C3;
+    box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E; 
+    width: 147px;
+    height: 48px;
+    cursor: pointer; 
+    color: black;  
 }
 
 .rotate-toggle {
@@ -86,12 +123,208 @@ body {
 .noClick {
     pointer-events: none;
     cursor: default;
+    /* background: #C3C3C3;
+    box-shadow: none; */
+    /* box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E; */
+    /* border: 1px dashed #000000; */
  }
 
  /* .enemy-occupied {
     background-color: lightblue;
  } */
 
- .occupied {
-    background-color: red;
+
+
+
+
+.player-grid-cont > .enemy-occupied {
+    background: #C3C3C3;
+    /* box-shadow: none; */
+    box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E;
+    /* border: 1px dashed #000000; */
+}
+
+.player-grid-cont {
+    border: 2px solid black;
+}
+
+.control-buttons {
+    height: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 115px;
+}
+
+.your-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 20px;   */
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 8px; */
+    padding: 5px 5px;
+    gap: 1035px;
+    padding-bottom: 2px;
+    /* height: 58px; */
+    /* bottom: 48px; */
+    background: #C3C3C3;
+    box-shadow: inset 2px 2px 0px #f0f0f0;
+    width: 100vw;
+    height: 5vh;
+}
+
+.start-button {
+    /* width: 120px;
+height: 50px; 
+
+/* mono 100 */
+height: 100%;
+width: 120px;
+background: #C3C3C3;
+box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E, inset 4px 4px 0px #B1B1B1;
+
+/* Inside auto layout */
+
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0px 10px;
+}
+
+.start-button > p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+.start-button > img {
+    width: 30%;
+}
+
+.player-grid-cont > .enemy-occupied {
+    /* background: red; */
+}
+
+.occupied {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    /* background: red !important; */
+    /* background: #C3C3C3; 
+    box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E; */
+    box-shadow: none;
+    border: 1px dashed #000000;
+}
+
+.grid-header {
+    width: 400px;
+    height: 42px;
+    background-color: #02007F;
+}
+
+button:disabled {
+    cursor: default;
+}
+
+.layout-grid {
+    width: 486px;
+    height: 116px;
+}
+
+.smile-cont {
+    box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E, inset 4px 4px 0px #B1B1B1;
+    background: #C3C3C3;
+    padding: 10px;  
+}
+
+.smile {
+    width: 117px;
+    height: 117px;
+}
+
+/* .control-buttons > button {
+    background: #C3C3C3;
+    box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E; 
+    width: 147px;
+    height: 48px;
+    cursor: pointer; 
+    color: black;  
+} */
+
+.player-icon {
+    padding-top: 2px;
+    width: 32px;
+    height: 32px;
+}
+
+.grid-header {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.grid-header > div > p {
+    margin: 0px;
+    font-size: 20px;
+}
+
+.ls {
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    gap: 10px;
+}
+
+.window-buttons {
+    width: 104px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.cpu-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    font-size: 20px;
+}
+
+.place-my-ships {
+    background: #C3C3C3;
+    box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E; 
+    width: 200px;
+    height: 60px;
+    cursor: pointer; 
+    color: black;  
+    font-size: 30px;
+}
+
+.rotate-toggle {
+    width: 147px;
+    height: 48px;
+    background: #C3C3C3;
+    box-shadow: inset -2px -2px 0px #262626, inset 2px 2px 0px #F0F0F0, inset -4px -4px 0px #7E7E7E; 
+    /* width: 200px;
+    height: 60px; */
+    cursor: pointer; 
+    color: black;  
+}
+
+.mine-img {
+    width: 24.7px;
+    height: 23.013px;
 }

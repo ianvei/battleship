@@ -56,6 +56,7 @@ export default class ManipulateDom {
     for (let child = grid.firstChild; child !== null; child = child.nextSibling) {
       if (child.spotOnBoardObject.name) {
         child.classList.add('occupied');
+        child.innerText = 'X';
         child.classList.add('noClick');
         const shipButton = document.querySelector(`.${child.spotOnBoardObject.name}`);
         shipButton.disabled = true;

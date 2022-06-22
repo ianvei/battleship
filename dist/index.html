@@ -6,14 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=VT323&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
     <div class="top">
-        <h1 class="win"></h1>
+        <img src="../src/images/battleshiplogo.png" alt="battleship logo" class="battle-logo">
     </div>
     <div class="main">
         <div class="your-grid">
+            <div class="grid-header">
+                <div class="ls">
+                    <img src="../src/images/playericon.png" alt="player icon of a minesweeper bomb" class="player-icon">
+                    <p>Player</p>
+                </div>
+                <img src="../src/images/hello.png" alt="minimize maximize close button" class="window-buttons">
+                
+            </div>
             <div class="player-grid-cont"></div>
             <div class="user-ships">
                 <button class="carrier">carrier</button>
@@ -22,13 +33,34 @@
                 <button class="submarine">submarine</button>
                 <button class="destroyer">destroyer</button>
             </div>
+            
+        </div>
+        <div class="control-buttons">
+            <div class="smile-cont">
+                <img src="../src/images/smile.png" alt="smile" class="smile">
+            </div>
+            <button class="place-my-ships">Place For Me!</button>
             <button class="rotate-toggle">Rotate</button>
-            <button class="place-my-ships">Place For Me</button>
+            
         </div>
         <div class="cpu-grid">
+            <div class="grid-header">
+                <div class="ls">
+                    <img src="../src/images/playericon.png" alt="player icon of a minesweeper bomb" class="player-icon">
+                    <p>Computer</p>
+                </div>
+                <img src="../src/images/hello.png" alt="minimize maximize close button" class="window-buttons">
+                
+            </div>
             <div class="enemy-grid-cont"></div>
+            <div class="layout-grid"></div>
         </div>
     </div>
-    <div class="footer"></div>
+    <div class="footer">
+        <div class="start-button">
+            <img src="../src/images/windowlogo.png" alt="windows logo">
+            <p>Start</p>
+        </div>
+    </div>
 </body>
 </html>
