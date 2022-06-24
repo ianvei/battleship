@@ -27,18 +27,15 @@ export default class ManipulateDom {
       gridCell.spotOnBoardObject = spotOnBoard;
 
       gridCell.addEventListener('click', () => {
-        console.log(spotOnBoard);
         if (!(this.gameBoard.currentSelectedShip === '')) {
           this.gameBoard.placeShip(
             [spotOnBoard.x, spotOnBoard.y],
             this.gameBoard.currentSelectedShip,
             this.isVertical,
           );
-          // this.placedShipAmmount += 1;
           this.checkDom();
           this.checkIfDonePlacing();
         }
-        // this.disablePlacement();
       });
       container.appendChild(gridCell);
     }
@@ -60,7 +57,6 @@ export default class ManipulateDom {
         child.classList.add('noClick');
         const shipButton = document.querySelector(`.${child.spotOnBoardObject.name}`);
         shipButton.disabled = true;
-        // this.gameBoard.currentSelectedShip = '';
       }
     }
   }
@@ -85,45 +81,35 @@ export default class ManipulateDom {
 
     carrier.shipObject = this.player.currentShips[0];
     carrier.addEventListener('click', () => {
-      console.log(carrier.shipObject);
       this.gameBoard.currentSelectedShip = carrier.shipObject;
-      console.log(this.gameBoard);
       document.querySelector('.place-my-ships').classList.toggle('noClick');
       document.querySelector('.place-my-ships').disabled = true;
     });
 
     battleship.shipObject = this.player.currentShips[1];
     battleship.addEventListener('click', () => {
-      console.log(battleship.shipObject);
       this.gameBoard.currentSelectedShip = battleship.shipObject;
-      console.log(this.gameBoard);
       document.querySelector('.place-my-ships').classList.toggle('noClick');
       document.querySelector('.place-my-ships').disabled = true;
     });
 
     cruiser.shipObject = this.player.currentShips[2];
     cruiser.addEventListener('click', () => {
-      console.log(cruiser.shipObject);
       this.gameBoard.currentSelectedShip = cruiser.shipObject;
-      console.log(this.gameBoard);
       document.querySelector('.place-my-ships').classList.toggle('noClick');
       document.querySelector('.place-my-ships').disabled = true;
     });
 
     submarine.shipObject = this.player.currentShips[3];
     submarine.addEventListener('click', () => {
-      console.log(submarine.shipObject);
       this.gameBoard.currentSelectedShip = submarine.shipObject;
-      console.log(this.gameBoard);
       document.querySelector('.place-my-ships').classList.toggle('noClick');
       document.querySelector('.place-my-ships').disabled = true;
     });
 
     destroyer.shipObject = this.player.currentShips[4];
     destroyer.addEventListener('click', () => {
-      console.log(destroyer.shipObject);
       this.gameBoard.currentSelectedShip = destroyer.shipObject;
-      console.log(this.gameBoard);
       document.querySelector('.place-my-ships').classList.toggle('noClick');
       document.querySelector('.place-my-ships').disabled = true;
     });
@@ -134,32 +120,13 @@ export default class ManipulateDom {
     rotateButton.addEventListener('click', () => {
       this.isVertical = !this.isVertical;
       document.querySelector('.rotate-indicator').classList.toggle('ninety-degrees');
-      console.log(this.isVertical);
     });
   }
 
   checkIfDonePlacing() {
-    // const grid = document.querySelector('.user-ships');
-    // const checkArray = [];
-    // for (let child = grid.firstChild; child !== null; child = child.nextSibling) {
-    //   if (child.disabled) {
-    //     this.placedShipAmmount += 1;
-    //     checkArray.push(true);
-    //   } else {
-    //     checkArray.push(false);
-    //   }
-    // }
-    // const checkArrayBool = checkArray.every(Boolean);
     if (this.gameBoard.placedShipAmmount === 5) {
-      console.log('its all true!');
       document.querySelector('.player-grid-cont').classList.add('noClick');
       document.querySelector('.enemy-grid-cont').classList.toggle('noClick');
-    } else {
-      console.log('no flase in check');
     }
-    console.log(`PLACED SHIP AMOUNT: ${this.gameBoard.placedShipAmmount}`);
   }
-  //   placeShips(ship) {
-
-  //   }
 }

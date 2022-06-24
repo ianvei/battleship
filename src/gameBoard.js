@@ -41,7 +41,6 @@ export default class GameBoard {
   // eslint-disable-next-line class-methods-use-this
   placeShip(coordinates, ship, isVertical) {
     this.placed = false;
-    console.log(ship.length);
     let colSpan;
     let startingCoordinate;
     if (isVertical) {
@@ -51,7 +50,6 @@ export default class GameBoard {
       colSpan = coordinates[0] + ship.length;
       startingCoordinate = coordinates[0];
     }
-    console.log(colSpan);
     const shipPositionArray = [];
 
     for (let i = startingCoordinate; i < colSpan; i++) {
@@ -77,7 +75,6 @@ export default class GameBoard {
             break; // if spot is occupied, simply don't let it happen
           }
           if (colSpan > 10) {
-            console.log('not is vert');
             valuesArray.push(false);
             break;
           }
@@ -85,33 +82,24 @@ export default class GameBoard {
           valuesArray.push(true);
         }
       }
-      console.log(valuesArray);
     }
 
     const result = valuesArray.every(Boolean); // check if every value is okay before occupying
     if (result) {
-      console.log('ITS ALL GOOD');
-      console.log(valuesArray);
-      console.log(shipPositionArray);
       for (const spotOnBoard of validSpots) {
         spotOnBoard.name = ship.name;
         spotOnBoard.occupied = true;
         spotOnBoard.shipObject = ship;
-        console.log(spotOnBoard.name);
       }
       this.placedShipAmmount += 1;
       this.placed = true;
       this.currentSelectedShip = '';
       this.succesfullRandom = true;
-    } else {
-      console.log('NOT GOOD');
-      console.log(valuesArray);
     }
   }
 
   registerHit(coords, name) {
     this.tempCount = 0;
-    console.log(`TESTING THE HIT: ${name}`);
     for (const spotOnBoard of this.boardCoords) {
       if ((coords[0] === spotOnBoard.x) && (coords[1] === spotOnBoard.y)) {
         if (spotOnBoard.guessable && (!spotOnBoard.hit)) {
@@ -124,19 +112,15 @@ export default class GameBoard {
             }
             spotOnBoard.guessable = false;
             spotOnBoard.shipObject.hit();
-            if (spotOnBoard.shipObject.isSunk()) { // check if ship is sunk, if so log console
-              console.log('im sunk!');
+            if (spotOnBoard.shipObject.isSunk()) { // check if ship is sunk
               this.sunkShips.push('X');
-              console.log(this.sunkShips);
               if (this.sunkShips.length >= 5) {
                 if (name === 'computer') {
-                  console.log('Congrats player you win!');
                   document.querySelector('.win').innerText = `${name} wins!`;
                   document.querySelector('.win-main > p').innerText = 'Sorry player, you lose! Refresh to play again.';
                   document.querySelector('.win-popup').style.display = 'flex';
                   this.winFlag = true;
                 } else if (name === 'player') {
-                  console.log(`Congrats ${name} you win!`);
                   document.querySelector('.win-main > p').innerText = `Congratulations ${name}, you win! Refresh to play again.`;
                   document.querySelector('.win-popup').style.display = 'flex';
                   this.winFlag = true;
@@ -159,7 +143,6 @@ export default class GameBoard {
           // break;
           // this.succesfullRandom = false;
         }
-        console.log('NOT GUESSABLE ANYMORE');
         // spotOnBoard.
         spotOnBoard.guessable = false; // not guessable regardless of hit
       }
