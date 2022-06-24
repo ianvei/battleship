@@ -117,6 +117,11 @@ export default class GameBoard {
         if (spotOnBoard.guessable && (!spotOnBoard.hit)) {
           if (spotOnBoard.name && spotOnBoard.occupied) {
             spotOnBoard.hit = true;
+            if (name === 'computer') {
+              document.querySelector('.smile-cont > img').src = '../src/images/sad.png';
+            } else {
+              document.querySelector('.smile-cont > img').src = '../src/images/smile.png';
+            }
             spotOnBoard.guessable = false;
             spotOnBoard.shipObject.hit();
             if (spotOnBoard.shipObject.isSunk()) { // check if ship is sunk, if so log console
@@ -124,13 +129,16 @@ export default class GameBoard {
               this.sunkShips.push('X');
               console.log(this.sunkShips);
               if (this.sunkShips.length >= 5) {
-                if (this.name === 'computer') {
+                if (name === 'computer') {
                   console.log('Congrats player you win!');
                   document.querySelector('.win').innerText = `${name} wins!`;
+                  document.querySelector('.win-main > p').innerText = 'Sorry player, you lose! Refresh to play again.';
+                  document.querySelector('.win-popup').style.display = 'flex';
                   this.winFlag = true;
-                } else if (this.name === 'player') {
+                } else if (name === 'player') {
                   console.log(`Congrats ${name} you win!`);
-                  document.querySelector('.win').innerText = `${name} wins!`;
+                  document.querySelector('.win-main > p').innerText = `Congratulations ${name}, you win! Refresh to play again.`;
+                  document.querySelector('.win-popup').style.display = 'flex';
                   this.winFlag = true;
                 }
               }
@@ -138,9 +146,15 @@ export default class GameBoard {
             this.tempCount += 1;
           } else {
             this.tempCount += 1; // a hit, but not on a ship.
+            if (name === 'player') {
+              document.querySelector('.smile-cont > img').src = '../src/images/neutral.png';
+            }
           }
         } else {
           console.log('already guessed here!'); // if not guessable
+          if (name === 'player') {
+            document.querySelector('.smile-cont > img').src = '../src/images/neutral.png';
+          }
           // this.registerHit(coords);
           // break;
           // this.succesfullRandom = false;

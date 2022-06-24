@@ -133,6 +133,7 @@ export default class ManipulateDom {
     const rotateButton = document.querySelector('.rotate-toggle');
     rotateButton.addEventListener('click', () => {
       this.isVertical = !this.isVertical;
+      document.querySelector('.rotate-indicator').classList.toggle('ninety-degrees');
       console.log(this.isVertical);
     });
   }

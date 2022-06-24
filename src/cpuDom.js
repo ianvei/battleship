@@ -9,6 +9,7 @@ export default class CpuManipulateDom {
     this.player = player;
     this.generateGrid();
     this.rotateToggle();
+    this.closeOverlay();
     this.placedShipAmmount = 0;
   }
 
@@ -99,6 +100,13 @@ export default class CpuManipulateDom {
   rotateToggle() {
     this.isVertical = !this.isVertical;
     console.log(this.isVertical);
+  }
+
+  closeOverlay() {
+    document.querySelector('.close-overlay').addEventListener('click', () => {
+      document.querySelector('.beginning-popup').style.display = 'none';
+      document.querySelector('.beginning-overlay').style.display = 'none';
+    });
   }
 
   checkIfDonePlacing() {

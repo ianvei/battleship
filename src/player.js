@@ -32,7 +32,7 @@ export default class Player {
       do {
         const xRandom = Math.floor(Math.random() * 10);
         const yRandom = Math.floor(Math.random() * 10);
-        this.enemyBoard.registerHit([xRandom, yRandom], 'cpu');
+        this.enemyBoard.registerHit([xRandom, yRandom], 'computer');
       } while (this.enemyBoard.tempCount < 1);
     }
   }
