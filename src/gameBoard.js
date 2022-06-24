@@ -116,7 +116,6 @@ export default class GameBoard {
               this.sunkShips.push('X');
               if (this.sunkShips.length >= 5) {
                 if (name === 'computer') {
-                  document.querySelector('.win').innerText = `${name} wins!`;
                   document.querySelector('.win-main > p').innerText = 'Sorry player, you lose! Refresh to play again.';
                   document.querySelector('.win-popup').style.display = 'flex';
                   this.winFlag = true;
