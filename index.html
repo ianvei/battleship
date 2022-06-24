@@ -12,6 +12,26 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="beginning-overlay"></div>
+    <div class="beginning-popup">
+        <div class="win-header">
+            <div class="ls">
+                <p>Internet Explorer</p>
+            </div>
+            <img src="../src/images/hello.png" alt="minimize maximize close button" class="window-buttons close-overlay">
+            
+        </div>
+        <div class="win-main">
+            <img src="../src/images/alert.png" alt="alert icon" class="alert-image">
+            <div class="text-cont">
+                <p>Welcome to battleship! To begin playing, select a ship and place it on the grid. 
+                    Click the 'rotate' button to change the orientation... or do none of that, and click 'place for me!'
+                </p>
+                <h2>Have fun!</h2>
+            </div>
+            
+        </div>
+    </div>
     <div class="top">
         <img src="../src/images/battleshiplogo.png" alt="battleship logo" class="battle-logo">
     </div>
@@ -40,7 +60,13 @@
                 <img src="../src/images/smile.png" alt="smile" class="smile">
             </div>
             <button class="place-my-ships">Place For Me!</button>
-            <button class="rotate-toggle">Rotate</button>
+            <div class="rotate-area">
+                <button class="rotate-toggle">Rotate</button>
+            <div class="cell rotate">
+                <img src="../src/images/rotate.png" alt="minimize maximize close button" class="rotate-indicator">
+            </div>
+            </div>
+            
             
         </div>
         <div class="cpu-grid">
@@ -60,6 +86,19 @@
         <div class="start-button">
             <img src="../src/images/windowlogo.png" alt="windows logo">
             <p>Start</p>
+        </div>
+    </div>
+    <div class="win-popup">
+        <div class="win-header">
+            <div class="ls">
+                <p>Internet Explorer</p>
+            </div>
+            <img src="../src/images/hello.png" alt="minimize maximize close button" class="window-buttons">
+            
+        </div>
+        <div class="win-main">
+            <img src="../src/images/alert.png" alt="alert icon" class="alert-image">
+            <p>Congratulations player, you win!</p>
         </div>
     </div>
 </body>
