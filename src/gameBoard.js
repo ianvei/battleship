@@ -106,9 +106,9 @@ export default class GameBoard {
           if (spotOnBoard.name && spotOnBoard.occupied) {
             spotOnBoard.hit = true;
             if (name === 'computer') {
-              document.querySelector('.smile-cont > img').src = '../src/images/sad.png';
+              document.querySelector('.smile-cont > img').src = 'images/sad.png';
             } else {
-              document.querySelector('.smile-cont > img').src = '../src/images/smile.png';
+              document.querySelector('.smile-cont > img').src = 'images/smile.png';
             }
             spotOnBoard.guessable = false;
             spotOnBoard.shipObject.hit();
@@ -131,13 +131,13 @@ export default class GameBoard {
           } else {
             this.tempCount += 1; // a hit, but not on a ship.
             if (name === 'player') {
-              document.querySelector('.smile-cont > img').src = '../src/images/neutral.png';
+              document.querySelector('.smile-cont > img').src = 'images/neutral.png';
             }
           }
         } else {
           console.log('already guessed here!'); // if not guessable
           if (name === 'player') {
-            document.querySelector('.smile-cont > img').src = '../src/images/neutral.png';
+            document.querySelector('.smile-cont > img').src = 'images/neutral.png';
           }
           // this.registerHit(coords);
           // break;

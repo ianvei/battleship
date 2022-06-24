@@ -30,12 +30,12 @@ export default class CpuManipulateDom {
         if (gridCell.spotOnBoardObject.hit) {
           gridCell.classList.add('occupied');
           gridCell.classList.add('enemy-occupied');
-          gridCell.innerHTML = '<img src="../src/images/mine.png" alt="mine image" class="mine-img"></img>';
+          gridCell.innerHTML = '<img src="images/mine.png" alt="mine image" class="mine-img"></img>';
           gridCell.style.backgroundColor = 'red';
         } else {
           gridCell.innerText = 'X';
           gridCell.classList.add('enemy-occupied');
-          gridCell.innerHTML = '<img src="../src/images/mine.png" alt="mine image" class="mine-img"></img>';
+          gridCell.innerHTML = '<img src="images/mine.png" alt="mine image" class="mine-img"></img>';
         }
         document.querySelector('.enemy-grid-cont').classList.toggle('noClick');
         setTimeout(() => {
@@ -70,13 +70,13 @@ export default class CpuManipulateDom {
       if (child.spotOnBoardObject.hit) {
         child.classList.add('noClick');
         child.classList.add('occupied');
-        child.innerHTML = '<img src="../src/images/mine.png" alt="mine image" class="mine-img"></img>';
+        child.innerHTML = '<img src="images/mine.png" alt="mine image" class="mine-img"></img>';
         child.style.backgroundColor = 'red';
       }
       if ((!child.spotOnBoardObject.guessable) && (!child.spotOnBoardObject.name)) {
         child.classList.add('noClick');
         child.classList.add('enemy-occupied');
-        child.innerHTML = '<img src="../src/images/mine.png" alt="mine image" class="mine-img"></img>';
+        child.innerHTML = '<img src="images/mine.png" alt="mine image" class="mine-img"></img>';
       }
     }
   }
